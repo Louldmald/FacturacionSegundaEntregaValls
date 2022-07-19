@@ -1,7 +1,7 @@
 package com.FacturacionSegundaEntregaValls.Controller;
 
 import com.FacturacionSegundaEntregaValls.Model.Cliente;
-import com.FacturacionSegundaEntregaValls.Service.ClienteService;
+import com.FacturacionSegundaEntregaValls.Service.ClienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,24 +12,26 @@ import java.util.List;
 public class ClienteController {
 
     @Autowired
-    private ClienteService clienteService;
+    private ClienteServiceImpl clienteService;
 
-    @GetMapping
-    public List<Cliente> BuscarTodos() {
-        return this.clienteService.BuscarTodos();
+    @GetMapping("/all")
+    public List<Cliente> obtenerClientes() {
+        return clienteService.buscarTodos();
     }
 
-    // Single item
-
-    @GetMapping("/{id}")
-    public Cliente one(@PathVariable Integer id) {
-
-        return this.clienteService.findById(id);
+    @GetMapping("/{dni}")
+    public Cliente buscarClientePorDni(@PathVariable Integer dni) {
+        return clienteService.buscarPorDni(dni);
     }
 
-    @PostMapping
-    public Cliente nuevoCliente(@RequestBody Cliente cliente) {
-        return this.clienteService.save(cliente);
+    @PostMapping("/actualizar")
+    public Cliente actualizarCliente(@RequestBody Cliente cliente) throws Exception {
+        return clienteService.actualizar(cliente);
+    }
+
+    @PostMapping("/crear")
+    public Cliente crearCliente(@RequestBody Cliente cliente) throws Exception {
+        return clienteService.crear(cliente);
     }
 
 }
