@@ -1,8 +1,6 @@
 package com.FacturacionSegundaEntregaValls.Controller;
 
-import com.FacturacionSegundaEntregaValls.Model.Cliente;
-import com.FacturacionSegundaEntregaValls.Model.Producto;
-import com.FacturacionSegundaEntregaValls.Service.ProductoService;
+import com.FacturacionSegundaEntregaValls.Model.ProductoModel;
 import com.FacturacionSegundaEntregaValls.Service.ProductoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,23 +14,23 @@ public class ProductoController {
     private ProductoServiceImpl productoService;
 
     @GetMapping("/all")
-    public List<Producto> obtenerProductos() {
-        return ProductoService.buscarTodosP();
+    public List<ProductoModel> obtenerProductos() {
+        return productoService.buscarTodosP();
     }
 
     @GetMapping("/{codigoProducto}")
-    public Producto buscarProductoPorCodigo(@PathVariable Integer codigoProducto) {
-        return ProductoService.buscarPorCodigo(codigoProducto);
+    public ProductoModel buscarProductoPorCodigo(@PathVariable Integer codigoProducto) {
+        return productoService.buscarPorCodigo(codigoProducto);
     }
 
     @PostMapping("/actualizar")
-    public Cliente actualizarProducto(@RequestBody Producto producto) throws Exception {
-        return ProductoService.actualizarP(producto);
+    public ProductoModel actualizarProducto(@RequestBody ProductoModel productoModel) throws Exception {
+        return productoService.actualizarP(productoModel);
     }
 
     @PostMapping("/crear")
-    public Cliente crearProducto(@RequestBody Producto producto) throws Exception {
-        return ProductoService.crearP(producto);
+    public ProductoModel crearProducto(@RequestBody ProductoModel productoModel) throws Exception {
+        return productoService.crearP(productoModel);
     }
 
 }

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Producto")
-public class Producto {
+public class ProductoModel {
 
     @Column(name = "DescProducto")
     private String DescProducto;
@@ -16,20 +16,20 @@ public class Producto {
     private Double Valor;
 
     @Column(name = "Cantidad")
-    private int Cantidad;
+    private Integer Cantidad;
 
     @Column(name = "CodigoProducto")
     @Id
     private Integer CodigoProducto;
 
-    public Producto(String descProducto, Double valor, Integer cantidad, Integer codigoProducto) {
+    public ProductoModel(String descProducto, Double valor, Integer cantidad, Integer codigoProducto) {
         DescProducto = descProducto;
         Valor = valor;
         Cantidad = cantidad;
         CodigoProducto = codigoProducto;
     }
 
-    public Producto() {
+    public ProductoModel() {
     }
 
     public String getDescProducto() {
@@ -44,7 +44,7 @@ public class Producto {
         return Valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         Valor = valor;
     }
 
@@ -52,7 +52,7 @@ public class Producto {
         return Cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         Cantidad = cantidad;
     }
 

@@ -1,15 +1,15 @@
 package com.FacturacionSegundaEntregaValls.Service;
 
 
-import com.FacturacionSegundaEntregaValls.Model.Producto;
+import com.FacturacionSegundaEntregaValls.Model.ProductoModel;
 
 import java.util.List;
 
 public interface ProductoService {
 
 
-    Producto buscarPorCodigo(Integer codigoProducto);
-    List<Producto> buscarTodosP();
-    Producto crearP(Producto producto) throws Exception;
-    Producto actualizarP(Producto producto) throws Exception;
+    ProductoModel buscarPorCodigo(Integer codigoProducto);
+    List<ProductoModel> buscarTodosP();
+    ProductoModel crearP(ProductoModel productoModel) throws Exception;
+    ProductoModel actualizarP(ProductoModel productoModel) throws Exception;
 }

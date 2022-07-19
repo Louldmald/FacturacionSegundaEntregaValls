@@ -1,8 +1,8 @@
 package com.FacturacionSegundaEntregaValls.Service;
 
 import com.FacturacionSegundaEntregaValls.DAO.ProductoDAO;
-import com.FacturacionSegundaEntregaValls.Model.Cliente;
-import com.FacturacionSegundaEntregaValls.Model.Producto;
+import com.FacturacionSegundaEntregaValls.Model.ProductoModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,29 +10,32 @@ import java.util.List;
 @Service
 public class ProductoServiceImpl implements ProductoService {
 
+    @Autowired
+    private ProductoDAO productoDAO;
+
     @Override
-    public Producto buscarPorCodigo(Integer codigoProducto) {
-        return ProductoDAO.findById(codigoProducto).orElse(null);
+    public ProductoModel buscarPorCodigo(Integer codigoProducto) {
+        return productoDAO.findById(codigoProducto).orElse(null);
     }
 
     @Override
-    public List<Producto> buscarTodosP() {
-        return ProductoDAO.findAll();
+    public List<ProductoModel> buscarTodosP() {
+        return productoDAO.findAll();
     }
 
     @Override
-    public Producto crearP(Producto producto) throws Exception {
-        if (buscarPorCodigo(Producto.getCodigoProducto()) == null) {
-            return ProductoDAO.save(Producto);
+    public ProductoModel crearP(ProductoModel productoModel) throws Exception {
+        if (buscarPorCodigo(productoModel.getCodigoProducto()) == null) {
+            return productoDAO.save(productoModel);
         } else {
             throw new Exception("Producto ya existe");
         }
     }
 
     @Override
-    public Producto actualizarP(Producto producto) throws Exception {
-        if (buscarPorCodigo(Producto.getCodigoProducto()) != null) {
-            return ProductoDAO.save(Producto);
+    public ProductoModel actualizarP(ProductoModel productoModel) throws Exception {
+        if (buscarPorCodigo(productoModel.getCodigoProducto()) != null) {
+            return productoDAO.save(productoModel);
         } else {
             throw new Exception("Producto no existe");
         }
